@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+  <script src="/js/color-modes.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web DOS Games</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap Icons CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+   
+  <link href="/css/details.css" rel="stylesheet">
+</head>
+<body>
+  <!-- TOGGLE-THEME -->
+  <div w3-include-html="/svgs-theme-picker.html"></div>
+  
+  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+            id="bd-theme"
+            type="button"
+            aria-expanded="false"
+            data-bs-toggle="dropdown"
+            aria-label="Toggle theme (auto)">
+      <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+          Light
+          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+          Dark
+          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+          Auto
+          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- HEADER -->
+  <div w3-include-html="/header.html"></div>
+
+<!-- MAIN -->
+<main>
+
+  <div class="container px-4 py-4" id="details_container">
+    <div id="alertPlaceholder"></div>
+    <div class="row row-cols-2 align-items-md-center g-5 mb-2 border-bottom">
+          <div class="col">
+              <h2 class="pb-2" id="title"></h2>
+          </div>
+          <div class="col d-flex flex-column align-items-end gap-2">
+              <a href="#" class="btn btn-primary btn-lg" id="play_button">Play!</a>
+          </div>
+      </div>
+
+      <div class="container text-center">
+          <div class="row">
+              <div class="col-4">
+                  <img src="#" class="img-content mx-auto rounded m-1" alt="" id="image" style="max-height: 315px !important;">
+                  <div class="list-group list-group-flush">
+                      <div href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Developers</h5>
+                        </div>
+                        <p class="d-flex mb-1" id="developers"></p>
+                      </div>
+                      <div href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Publishers</h5>
+                          </div>
+                          <p class="d-flex mb-1" id="publishers"></p>
+                      </div>
+                      <div href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Genres</h5>
+                          </div>
+                          <p class="d-flex mb-1" id="genres"></p>
+                      </div>
+                      <div href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Release</h5>
+                          </div>
+                          <p class="d-flex mb-1" id="year"></p>
+                      </div>
+                    </div>
+              </div>
+
+              <div class="col-8">
+                  <iframe id="video" width="560" height="315" src="#" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  <p class="text-start">
+                      <span class="text-body-secondary" id="description"></span>
+                  </p>
+              </div>
+          </div>
+      </div>
+    </div>
+</main>
+<!-- MAIN -->
+
+<!--  Scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="/js/color-modes.js"></script>
+<script src="/js/w3.js"></script>
+<script>
+  w3.includeHTML();
+</script>
+<script src="/js/common.js"></script>
+<script src="/js/details.js"></script>
+</body>
+</html>
