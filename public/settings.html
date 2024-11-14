@@ -118,66 +118,7 @@
 </main>
 <!-- MAIN -->
 
-<div class="modal fade" id="uploadModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Upload new game</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="/api/create" id="uploadForm" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="uploadFormFile" class="form-label">Game bundle</label>
-            <input class="form-control" type="file" id="uploadFormFile" name="file" accept=".jsdos" required>
-            <div class="invalid-feedback">
-              Please add a game bundle file.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="uploadInputName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="uploadInputName" name="name" required>
-            <div class="invalid-feedback">
-              Please add a game name.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="uploadInputImageUrl" class="form-label">Cover URL</label>
-            <input type="text" class="form-control" id="uploadInputImageUrl" name="img">
-          </div>
-          <div class="mb-3">
-            <label for="uploadTextareaDescription" class="form-label">Description</label>
-            <textarea class="form-control" id="uploadTextareaDescription" rows="3" name="description"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="uploadTextareaDevelopers" class="form-label">Developers</label>
-            <textarea class="form-control" id="uploadTextareaDevelopers" rows="2" name="developers"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="uploadTextareaPublishers" class="form-label">Publishers</label>
-            <textarea class="form-control" id="uploadTextareaPublishers" rows="2" name="publishers"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="uploadTextareaGenres" class="form-label">Genres</label>
-            <textarea class="form-control" id="uploadTextareaGenres" rows="2" name="genres"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="uploadInputYear" class="form-label">Release</label>
-            <input type="text" class="form-control" id="uploadInputYear" name="year">
-          </div>
-          <div class="mb-3">
-            <label for="uploadInputTrailerUrl" class="form-label">Trailer URL</label>
-            <input type="text" class="form-control" id="uploadInputTrailerUrl" name="trailer">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="uploadModalSave">Save changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<div w3-include-html="/settings/upload.html"></div>
 
 <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -188,6 +129,7 @@
       </div>
       <form action="/api/update" id="editForm" method="post" class="needs-validation" novalidate>
         <input type="hidden" id="editInputId" name="id">
+        <input type="hidden" id="editInputIgdbId" name="igdb_id">
         <div class="modal-body">
           <div class="mb-3">
             <label for="editInputName" class="form-label">Name</label>
@@ -260,7 +202,9 @@
 <script src="/js/color-modes.js"></script>
 <script src="/js/w3.js"></script>
 <script>
-  w3.includeHTML();
+  w3.includeHTML(async function() {
+    afterLoadingPage();
+  });
 </script>
 <script src="/js/common.js"></script>
 <script src="/js/settings.js"></script>

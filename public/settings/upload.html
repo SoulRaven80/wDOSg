@@ -1,0 +1,46 @@
+<div class="modal fade" id="gameMetadataModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload new game</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/api/create" id="gameMetadataForm" method="post" enctype="multipart/form-data"
+                class="needs-validation" novalidate>
+                <input type="hidden" id="gameMetadataInputImageUrl" name="img">
+                <input type="hidden" id="gameMetadataTextareaDescription" name="description">
+                <input type="hidden" id="gameMetadataTextareaDevelopers" name="developers">
+                <input type="hidden" id="gameMetadataTextareaPublishers" name="publishers">
+                <input type="hidden" id="gameMetadataTextareaGenres" name="genres">
+                <input type="hidden" id="gameMetadataInputYear" name="year">
+                <input type="hidden" id="gameMetadataInputTrailerUrl" name="trailer">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="gameMetadataInputFile" class="form-label">Game bundle</label>
+                        <input class="form-control" type="file" id="gameMetadataInputFile" name="file" accept=".jsdos" required>
+                        <div class="invalid-feedback">
+                            Please add a game bundle file.
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="gameMetadataInputName" class="form-label">Name</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="gameMetadataInputName" name="name" required>
+                            <div class="invalid-feedback">
+                                Please add a game name.
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-primary" onclick="findMetadata()">Find metadata</button>
+                        </div>
+                    </div>
+                    <div id="gameMetadataDiv"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="gameMetadataModalSave">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

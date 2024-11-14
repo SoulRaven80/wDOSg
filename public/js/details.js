@@ -8,9 +8,9 @@ $(document).ready(function() {
                 $("#image").attr('src', game.img);
                 $("#image").attr('alt', game.name);
                 $("#video").attr('src', game.trailer);
-                $("#developers").text(game.developers);
-                $("#publishers").text(game.publishers);
-                $("#genres").text(game.genres);
+                $("#developers").text(game.developers.join('\r\n'));
+                $("#publishers").text(game.publishers.join('\r\n'));
+                $("#genres").text(game.genres.join('\r\n'));
                 $("#year").text(game.year);
                 $("#play_button").attr('href', '/games/' + game.path);
             }

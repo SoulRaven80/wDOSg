@@ -4,6 +4,7 @@ import fileUpload from 'express-fileupload';
 import path from 'path';
 import cors from 'cors';
 import * as data_provider from './data_provider.js';
+import * as igdb_provider from './igdb_provider.js';
 import shortuuid from 'short-uuid';
 import stringSanitizer from "string-sanitizer";
 
@@ -42,14 +43,28 @@ app.get('/api/game', async function(req, res, next) {
     }
 });
 
-app.post('/api/create', (req, res, next) => {
+app.get('/api/gamemetadata', async function(req, res, next) {
+    console.log('METADATA called');
+
+    res.json(await igdb_provider.searchGame(req.query.gameName));
+});
+
+app.get('/api/gamemecover', async function(req, res, next) {
+    console.log('GAMECOVER called');
+
+    res.json(await igdb_provider.findCoverId(req.query.gameId));
+});
+
+app.post('/api/create', async function(req, res, next) {
     console.log('CREATE called');
+    // console.log(JSON.stringify(req.body, null, 4));
 
     if (!req.files || !req.files.file) {
         return res.status(422).send('No files were uploaded');
     }
 
     var game = getGameFromBody(req.body);
+    // // var metadata = igdb_provider.getGameMetadata(req.body.igdb_id);
     game.id = shortuuid.generate();
     game.path = stringSanitizer.sanitize.keepNumber(game.name);
     data_provider.save_new_game(games_library, req.files.file, game);
@@ -74,13 +89,21 @@ app.delete('/api/delete', (req, res) => {
 
 const getGameFromBody = (body) => {
     var game = {};
+    game.igdb_id = body.igdb_id;
     game.name = body.name;
     game.img = body.img;
     game.description = body.description;
-    game.developers = body.developers;
-    game.publishers = body.publishers;
-    game.genres = body.genres;
+    game.developers = body.developers ? body.developers.split(',') : 'N/A';
+    game.publishers = body.publishers ? body.publishers.split(',') : 'N/A';
+    game.genres = body.genres ? body.genres.split(',') : 'N/A';
     game.year = body.year;
     game.trailer = body.trailer;
     return game;
 };
+
+const getGenreName = (genreId) => {
+    var genres = JSON.parse(data_provider.getGenres());
+    return genres.filter(function (i) {
+        i.id === genreId;
+    })[0];
+} 

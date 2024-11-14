@@ -3,6 +3,15 @@ import * as url from 'url';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
+export function getGenres() {
+  try {
+    const data = fs.readFileSync( __dirname + "/public/genres.json", 'utf8');
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export function read_list() {
     try {
       const data = fs.readFileSync( __dirname + "/public/data.json", 'utf8');
