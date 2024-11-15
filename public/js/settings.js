@@ -61,7 +61,9 @@ const onCreateSubmit = () => {
         var result = searchResults.filter(function(i) {
             return i.id == igdb_id;
         })[0];
-        $("#gameMetadataInputImageUrl").val(`https://images.igdb.com/igdb/image/upload/t_cover_big/${result.cover.image_id}.jpg`);
+        if (result.cover && result.cover.image_id) {
+            $("#gameMetadataInputImageUrl").val(`https://images.igdb.com/igdb/image/upload/t_cover_big/${result.cover.image_id}.jpg`);
+        }
         $("#gameMetadataTextareaDescription").val(`${result.summary}`);
         var developers = result.involved_companies.filter(function (i) {
             return i.developer;
@@ -79,7 +81,12 @@ const onCreateSubmit = () => {
             return i.name;
         })}`);
         $("#gameMetadataInputYear").val(`${new Date(result.first_release_date * 1000).getFullYear()}`);
-        $("#gameMetadataInputTrailerUrl").val(`https://www.youtube.com/embed/${result.videos[0].video_id}`);
+        if (result.videos && result.videos.length > 0) {
+            $("#gameMetadataInputTrailerUrl").val(`https://www.youtube.com/embed/${result.videos[0].video_id}`);
+        }
+        else if (result.screenshots && result.screenshots.length > 0) {
+            $("#gameMetadataInputTrailerUrl").val(`https://images.igdb.com/igdb/image/upload/t_720p/${result.screenshots[0].image_id}.jpg`);
+        }
         $("#gameMetadataInputName").val(`${result.name}`);
     }
 }

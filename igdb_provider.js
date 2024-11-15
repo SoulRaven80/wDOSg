@@ -2,7 +2,7 @@ import igdb from 'igdb-api-node';
 
 export async function searchGame(name) {
     const response = await igdb.default('1phpruda4hrkw3wlxq2gxsq6z71cs7', '2zwakk1rsc8vi8pkaul2k6d3vcczmr')
-        .fields('category,cover.image_id,first_release_date,genres.name,involved_companies.id,involved_companies.developer,involved_companies.publisher,involved_companies.company.name,name,platforms.name,status,summary,url,videos.name,videos.video_id')
+        .fields('category,cover.image_id,first_release_date,genres.name,involved_companies.id,involved_companies.developer,involved_companies.publisher,involved_companies.company.name,name,platforms.name,screenshots.image_id,status,summary,url,videos.name,videos.video_id')
         .limit(50)
         .search(name)
         .where('release_dates.platform = (13)') // filter the results by DOS

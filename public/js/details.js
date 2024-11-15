@@ -7,7 +7,14 @@ $(document).ready(function() {
                 $("#description").text(game.description);
                 $("#image").attr('src', game.img);
                 $("#image").attr('alt', game.name);
-                $("#video").attr('src', game.trailer);
+                if (game.trailer.includes("youtube")) {
+                    $("#video").attr('src', game.trailer);
+                    $("#video").removeClass("d-none");
+                }
+                else {
+                    $("#screenshot").attr('src', game.trailer);
+                    $("#screenshot").removeClass("d-none");
+                }
                 if (typeof game.developers === "string") {
                     $("#developers").text(game.developers);
                 }
