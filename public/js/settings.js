@@ -7,8 +7,6 @@ const openUploadModal = () => {
 const openManualUploadModal = () => {
     $('#uploadManualModal').trigger("reset");
     $('#gameMetadataModal').modal("hide");
-    // $('#gameMetadataInputName').removeClass('is-valid is-invalid').addClass('is-invalid');
-    // openManualUploadModal
     const uploadModal = new bootstrap.Modal('#uploadManualModal', {});
     uploadModal.show();
 }
@@ -166,19 +164,6 @@ const getCover = (igdb_id, parentElement) => {
             container: '.modal-body',
             trigger: 'focus'
         }).show();
-        /*
-        $.getJSON(`/api/gamemecover?gameId=${igdb_id}`, function(result) {
-            if (result !== null && result !== undefined) {
-                parentElement.setAttribute('data-bs-content', `<img src='https://images.igdb.com/igdb/image/upload/t_cover_big/${result}.jpg'>`);
-                
-                const popover = new bootstrap.Popover(parentElement, {
-                    html: true,
-                    container: '.modal-body',
-                    trigger: 'focus'
-                }).show();
-            }
-        });
-        */
     }
 }
 
@@ -209,8 +194,30 @@ const findMetadata = () => {
                     '</li>'
                 ].join('');
             }
+            // TODO ADD MANUAL EDIT IF GAME WAS NOT LISTED
+            wrapper += ['<li class="list-group-item">',
+                '  <div class="row">',
+                '    <div class="col">',
+                `      <input class="form-check-input me-1" type="radio" name="igdb_id" value="-1" id="radio-1">`,
+                `      <label class="form-check-label" for="radio-1">Game not listed. <a href="#" onclick="openManualUploadModal()">Manually edit</a></label>`,
+                '    </div>',
+                '</li>'
+            ].join('');
             wrapper += '</ul>';
             $('#gameMetadataDiv').html(wrapper);
+            var radios = $('#gameMetadataForm').get(0).igdb_id;
+            for (var i = 0; i < radios.length; i++) {
+                radios[i].addEventListener('change', function() {
+                    if (this.id === "radio-1") {
+                        $('#gameMetadataModalSave').removeClass('btn-primary').addClass('btn-secondary');
+                        $('#gameMetadataModalSave').prop("disabled", true);
+                    }
+                    else if (this) {
+                        $('#gameMetadataModalSave').removeClass('btn-secondary').addClass('btn-primary');
+                        $('#gameMetadataModalSave').prop("disabled", false);
+                    }
+                });
+            }
         }
         else {
             $('#gameMetadataDiv').html('No matched games. Do you want to <a href="#" onclick="openManualUploadModal()">manually edit it?</a>');

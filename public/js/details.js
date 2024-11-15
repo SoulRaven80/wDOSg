@@ -14,7 +14,7 @@ $(document).ready(function() {
                 else {
                     $("#developers").text(game.developers.join('\r\n'));
                 }
-                if (typeof game.developers === "string") {
+                if (typeof game.publishers === "string") {
                     $("#publishers").text(game.publishers);
                 }
                 else {
