@@ -4,6 +4,15 @@ const openUploadModal = () => {
     uploadModal.show();
 }
 
+const openManualUploadModal = () => {
+    $('#uploadManualModal').trigger("reset");
+    $('#gameMetadataModal').modal("hide");
+    // $('#gameMetadataInputName').removeClass('is-valid is-invalid').addClass('is-invalid');
+    // openManualUploadModal
+    const uploadModal = new bootstrap.Modal('#uploadManualModal', {});
+    uploadModal.show();
+}
+
 $("#confirmDeleteButton").on("click", function(e) {
     var gameId = $("#gameIdDelete").val();
     $("#gameIdDelete").val("");
@@ -202,6 +211,9 @@ const findMetadata = () => {
             }
             wrapper += '</ul>';
             $('#gameMetadataDiv').html(wrapper);
+        }
+        else {
+            $('#gameMetadataDiv').html('No matched games. Do you want to <a href="#" onclick="openManualUploadModal()">manually edit it?</a>');
         }
     }).fail(function(jqXHR, status, error) {
         appendAlert('An error has occurred while getting the game information');

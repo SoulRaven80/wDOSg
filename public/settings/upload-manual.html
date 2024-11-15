@@ -1,0 +1,69 @@
+<div class="modal fade" id="uploadManualModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload new game</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/api/create" id="uploadManualForm" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="uploadManualFormFile" class="form-label">Game bundle</label>
+              <input class="form-control" type="file" id="uploadManualFormFile" name="file" accept=".jsdos" required>
+              <div class="invalid-feedback">
+                Please add a game bundle file.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualInputName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="uploadManualInputName" name="name" required>
+              <div class="invalid-feedback">
+                Please add a game name.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualInputImageUrl" class="form-label">Cover URL</label>
+              <input type="url" pattern="https?://.+" class="form-control" id="uploadManualInputImageUrl" name="img">
+              <div class="invalid-feedback">
+                Please add a valid URL.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualTextareaDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="uploadManualTextareaDescription" rows="3" name="description"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualTextareaDevelopers" class="form-label">Developers</label>
+              <textarea class="form-control" id="uploadManualTextareaDevelopers" rows="2" name="developers"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualTextareaPublishers" class="form-label">Publishers</label>
+              <textarea class="form-control" id="uploadManualTextareaPublishers" rows="2" name="publishers"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualTextareaGenres" class="form-label">Genres</label>
+              <textarea class="form-control" id="uploadManualTextareaGenres" rows="2" name="genres"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualInputYear" class="form-label">Release</label>
+              <input type="text" pattern="\d{4}" class="form-control" id="uploadManualInputYear" name="year">
+              <div class="invalid-feedback">
+                Please add a valid year.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="uploadManualInputTrailerUrl" class="form-label">Trailer URL</label>
+              <input type="url" pattern="https?://.+" class="form-control" id="uploadManualInputTrailerUrl" name="trailer">
+              <div class="invalid-feedback">
+                Please add a valid URL.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="uploadManualModalSave">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
